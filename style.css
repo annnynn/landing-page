@@ -1,9 +1,11 @@
 :root {
+    --clr-accent-500: hsl(12, 60%, 45%);
     --clr-accent-400: hsl(12, 88%, 59%);
+    --clr-accent-300: hsl(12, 88%, 75%);
     --clr-accent-100: hsl(13, 100%, 96%);
     --clr-primary-400: hsl(228, 39%, 23%);
-    --clr-neutral-100: hsl(232, 12%, 13%);
-    --clr-neutral-900: hsl(0 0% 0%);
+    --clr-neutral-900: hsl(232, 12%, 13%);
+    --clr-neutral-100: hsl(0 0% 0%);
     --ff-primary: "Be Vietnam Pro", sans-serif;
     --ff-body: var(--ff-primary);
     --ff-heading: var(--ff-primary);
@@ -31,6 +33,18 @@
         --fs-secondary-heading: var(--fs-800);
         --fs-nav: var(--fs-300);
     }
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 .text-primary-400 {
@@ -87,10 +101,12 @@
 
 .fs-primary-heading {
     font-size: var(--fs-primary-heading);
+    line-height: 1.1;
 }
 
 .fs-secondary-heading {
     font-size: var(--fs-secondary-heading);
+    line-height: 1.1;
 }
 
 .fs-300 {
@@ -107,4 +123,122 @@
 
 .fs-600 {
     font-size: var(--fs-600);
+}
+
+.padding-block-900 {
+    padding-block: var(--size-900);
+}
+
+.padding-block-700 {
+    padding-block: var(--size-700);
+}
+
+.container {
+    --max-width: 1110px;
+    --padding: 1rem;
+    width: min(var(--max-width), 100% - (var(--padding) * 2));
+    margin-inline: auto;
+}
+
+.even-columns {
+    display: grid;
+    gap: 1rem;
+}
+
+@media (min-width: 50em) {
+    .even-columns {
+        grid-auto-flow: column;
+        grid-auto-columns: 1fr;
+    }
+}
+
+
+/* general styling */
+
+body {
+    font-size: var(--fs-body);
+    font-family: var(--ff-body);
+    color: var(--clr-neutral-900);
+}
+
+.button {
+    cursor: pointer;
+    border: 0;
+    border-radius: 100vmax;
+    text-decoration: none;
+    padding: 1em 2.5em;
+    line-height: 1;
+    font-weight: var(--fw-bold);
+    font-size: var(--fs-button);
+    color: var(--clr-accent-100);
+    background-color: var(--clr-accent-400);
+    box-shadow: 0 1.125em 1em -1em var(--clr-accent-400);
+}
+
+.button[data-type="inverted"] {
+    background-color: var(--clr-accent-100);
+    color: var(--clr-accent-400);
+}
+
+.button[data-type="inverted"]:hover,
+.button[data-type="inverted"]:focus-visible {
+    background-color: var(--clr-accent-100);
+    color: var(--clr-accent-300);
+}
+
+.button:hover,
+.button:focus-visible {
+    background-color: var(--clr-accent-500);
+}
+
+.nav-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mobile-nav-toggle {
+    display: none;
+}
+
+@media (max-width: 50em) {
+    /* 800px მდე დამალე ნავიგაცია */
+    .primary-navigation {
+        display: none;
+        position: fixed;
+        background: var(--clr-neutral-100);
+        border-radius: 20px;
+    }
+    .nav-list {
+        display: grid;
+        gap: 5px;
+        text-align: center;
+        font-weight: var(--fw-bold);
+    }
+    .nav-list a {
+        text-decoration: none;
+        color: white;
+    }
+    .nav-list a:hover,
+    .nav-list a:focus {
+        color: red;
+    }
+    .mobile-nav-toggle {
+        /* display:block - გამოაჩინა toggle */
+        display: block;
+        cursor: pointer;
+        /* მოაშორა ბექრგრაუნდის ფერი */
+        background-color: transparent;
+        /*მოაშორა გარედან ბორდერი */
+        border: 0;
+        padding: 0.5em;
+    }
+    .mobile-nav-toggle .icon-close {
+        display: none;
+        /* გააქრო X ღილაკი */
+    }
+    .primary-navigation[data-visible] {
+        display: block;
+        position: fixed;
+    }
 }
